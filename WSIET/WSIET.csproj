@@ -212,10 +212,16 @@
     <Compile Include="Migrations\201601112121599_AddLocationName.Designer.cs">
       <DependentUpon>201601112121599_AddLocationName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601252140010_FixingDatabase.cs" />
+    <Compile Include="Migrations\201601252140010_FixingDatabase.Designer.cs">
+      <DependentUpon>201601252140010_FixingDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\LocationModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="ViewModels\LocationViewModel.cs" />
+    <Compile Include="ViewModels\VisitCreateViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VisitModel.cs" />
@@ -232,11 +238,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -256,7 +266,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -307,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601112121599_AddLocationName.resx">
       <DependentUpon>201601112121599_AddLocationName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601252140010_FixingDatabase.resx">
+      <DependentUpon>201601252140010_FixingDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

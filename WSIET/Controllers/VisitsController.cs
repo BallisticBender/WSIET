@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 using System.Web.Mvc;
 using WSIET.Models;
+using WSIET.ViewModels;
 
 namespace WSIET.Controllers
 {
@@ -76,6 +78,22 @@ namespace WSIET.Controllers
             ctx.Visits.Remove(ctx.Visits.FirstOrDefault(v => v.VisitId == id));
             ctx.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult GetCreateModel()
+        {
+            var ctx = new VisitsContext();
+
+            List<LocationViewModel> list = new List<LocationViewModel>();
+            foreach (var loc in ctx.Locations.ToList())
+            {
+                var vm = new LocationViewModel { LocationId = loc.LocationId, Name = loc.Name };
+                list.Add(vm);
+            }
+            var viewModel = new VisitCreateViewModel { Locations = list, Rating = 10, Review = "", Date = new DateTime() };
+            var ret = Json(viewModel, JsonRequestBehavior.AllowGet);
+            return ret;
         }
     }
 }

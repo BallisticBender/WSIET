@@ -83,3 +83,4 @@ C:\workspaces\WSIET\WSIET\obj\Debug\WSIET.pdb
 C:\workspaces\WSIET\WSIET\obj\Debug\WSIET.Migrations.InitialCreate.resources
 C:\workspaces\WSIET\WSIET\obj\Debug\WSIET.csproj.GenerateResource.Cache
 C:\workspaces\WSIET\WSIET\obj\Debug\WSIET.Migrations.AddLocationName.resources
+C:\workspaces\WSIET\WSIET\obj\Debug\WSIET.Migrations.FixingDatabase.resources

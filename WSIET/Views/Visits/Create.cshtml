@@ -1,52 +1,58 @@
-﻿@model WSIET.Models.VisitModel
+﻿@model WSIET.ViewModels.VisitCreateViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Vist";
 }
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>VisitModel</h4>
+
+<div ng-app="VisitApp">
+    <div ng-controller="VisitCreateController" class="form-horizontal">
+        <strong class="error">{{ error }}</strong>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
-            </div>
+            <label for="locationSelect">Location: </label>
+            <select ng-model="LocationId">
+                <option id="locationSelect " ng-repeat="location in data.Locations" value="{{location.LocationId}}">{{location.Name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="rating">Rating: </label>
+            <select ng-modle="Rating" id="rating">
+                <option id="1">1</option>
+                <option id="2">2</option>`
+                <option id="3">3</option>
+                <option id="4">4</option>
+                <option id="5">5</option>
+                <option id="6">6</option>
+                <option id="7">7</option>
+                <option id="8">8</option>
+                <option id="9">9</option>
+                <option id="10">10</option>
+            </select>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Review, htmlAttributes: new { @class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Review, new { htmlAttributes = new { @class = "form-control", type="textarea", rows=4} })
-                @Html.ValidationMessageFor(model => model.Review, "", new { @class = "text-danger" })
-            </div>
+            <label for="review"></label>
+            <textarea id="review" ng-model="Review" placeholder="Enter Review..." rows="4"></textarea>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-            </div>
+            <label for="date"></label>
+            <input ng-model="Date" type="date" id="date" />
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <button class="btn btn-default" ng-click="CreateVisit()">Create</button>
             </div>
         </div>
     </div>
-}
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -54,6 +60,32 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/Scripts/jquery.validate.min.js")
     @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+
+
+    <script type="text/javascript">
+
+        function VisitCreateController($scope, $http) {
+            $scope.error = "";
+            $scope.loading = true;
+            $scope.errorCount = 0;
+
+            $http.get("/Visits/GetCreateModel").success(function (data) {
+                $scope.data = data;
+                console.log($scope.data);
+            }).error(function() {
+                alert("Failure!");
+            });
+
+            $scope.CreateVisit = function() {
+                $scope.error = "Testing error " + ++$scope.errorCount;
+            }
+        }
+
+        angular.module('VisitApp', []).controller('VisitCreateController', VisitCreateController);
+
+    </script>
+
 }
